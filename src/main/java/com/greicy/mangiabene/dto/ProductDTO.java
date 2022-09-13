@@ -9,8 +9,6 @@ import java.util.Set;
 import com.greicy.mangiabene.entities.Category;
 import com.greicy.mangiabene.entities.Product;
 
-
-
 public class ProductDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 
