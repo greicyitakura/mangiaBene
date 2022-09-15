@@ -1,8 +1,13 @@
+import './assets/styles/custom.scss';
 import './App.css';
+import Navbar from 'components/Navbar';
 
-function App() {
+const App = () => {
   return (
-    <h1>Hellor MB Restaurante</h1>
+    <>
+    <Navbar />
+    <h1>Mangia Bene Restaurante italiano</h1>
+  </>
   );
 }
 
