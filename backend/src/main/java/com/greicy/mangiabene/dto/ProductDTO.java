@@ -9,14 +9,26 @@ import java.util.Set;
 import com.greicy.mangiabene.entities.Category;
 import com.greicy.mangiabene.entities.Product;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Positive;
+
 public class ProductDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	@NotBlank(message = "Campo obrigatório")
 	private String name;
+
+	@NotBlank(message = "Campo obrigatório")
 	private String description;
+
+	@Positive(message = "Deve ser um valor positivo")
 	private Double price;
+
 	private String imgUrl;
+
+	@PastOrPresent(message = "Não pode ser data futura")
 	private Instant date;
 	
 	private List<CategoryDTO> categories = new ArrayList<>();
