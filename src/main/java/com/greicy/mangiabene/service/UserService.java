@@ -1,12 +1,10 @@
 package com.greicy.mangiabene.service;
 
-import com.greicy.mangiabene.dto.CategoryDTO;
 import com.greicy.mangiabene.dto.RoleDTO;
 import com.greicy.mangiabene.dto.UserDTO;
-import com.greicy.mangiabene.entities.Category;
+import com.greicy.mangiabene.dto.UserInsertDTO;
 import com.greicy.mangiabene.entities.Role;
 import com.greicy.mangiabene.entities.User;
-import com.greicy.mangiabene.repositories.CategoryRepository;
 import com.greicy.mangiabene.repositories.RoleRepository;
 import com.greicy.mangiabene.repositories.UserRepository;
 import com.greicy.mangiabene.service.exceptions.DatabaseException;
@@ -16,6 +14,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +24,9 @@ import java.util.Optional;
 
 @Service
 public class UserService {
+
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private UserRepository repository;
@@ -46,12 +48,11 @@ public class UserService {
 	}
 
 	@Transactional(readOnly = true)
-	public UserDTO insert(UserDTO dto) {
+	public UserDTO insert(UserInsertDTO dto) {
 		User entity = new User();
 		copyDtoToEntity(dto, entity);
-		
+		entity.setPassword(passwordEncoder.encode(dto.getPassword()));
 		entity = repository.save(entity);
-		
 		return new UserDTO(entity);
 	}
 
