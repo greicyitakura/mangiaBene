@@ -9,7 +9,7 @@ const Home = () => {
     <>
       <Navbar />
       <div className="home-container">
-        <div className="home-card">
+        <div className="base-card home-card">
           <div className="home-content-container">
             <h1>Conheça o melhor restaurante italiano de Guarulhos</h1>
             <p>
