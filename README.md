@@ -1,8 +1,10 @@
 # Mangia Bene
-# Sobre o projeto
+
+## Sobre o projeto
 Mangia Bene é uma aplicação full stack web construída para a conclusão da matéria Projeto Integrador Transdisciplinar em Engenharia de Software II.
 A aplicação consiste em um sistema de restaurante delivery, onde o cliente efetua o pedido e o entregador seleciona os pedidos para realizar a entrega.
 E o administrador do sistema pode adicionar novos produtos no site do restaurante.
+
 A atividade a ser realizada consiste em:
 - Modelagem de dados: iniciando a construção dos artefatos de estruturais e comportamentais da Unified Modeling Language (UML)
 - Banco de dados: seed inicial do sistema
@@ -11,21 +13,39 @@ A atividade a ser realizada consiste em:
 - Frontend: Cosntruir a aplicação usando a liguagem TypeScript
 - Teste: desenvolver os testes para garantir a qualidade, usabilidade e a manutenção do produto
 - Documentação: criar uma documenta sobre o produto
+
+# MVC 
+
+![MVC](https://github.com/greicyitakura/mangiaBene/blob/main/pitII/imagens/mvc.png) 
+
+# Padrão Camadas 
+
+![Camadas](https://github.com/greicyitakura/mangiaBene/blob/main/pitII/imagens/padraoCamadas.png) 
+
+# Diagrama
+
+![Camadas](https://github.com/greicyitakura/mangiaBene/blob/main/pitII/imagens/diagrama.png) 
+
 ## Layout mobile
 ## Layout web
 ## Modelo conceitual
+
 # Tecnologias utilizadas
+
 ## Back end
 - Java
 - Spring Boot
+
 ## Front end
 - HTML / CSS / JS / TypeScript
 - ReactJS
 - React Native
+
 ## Implantação em produção
 - Back end: Heroku
 - Front end web: Netlify
 - Banco de dados: Postgresql / H2
+
 # Como executar o projeto
 ## Back end
 Pré-requisitos: Java 11
