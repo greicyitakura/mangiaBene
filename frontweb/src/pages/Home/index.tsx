@@ -18,9 +18,11 @@ const Home = () => {
             pratos chegam acondicionados em recipientes especiais que conservam
             o sabor de seu pedido.
           </p>
+        <div>
           <Link to="/products">
             <ButtonIcon />
           </Link>
+        </div>
         </div>
         <div className="home-image-container">
           <MainImage />
