@@ -4,11 +4,11 @@ import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
+import com.greicy.mangiabene.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +18,6 @@ import com.greicy.mangiabene.dto.ProductDTO;
 import com.greicy.mangiabene.entities.Category;
 import com.greicy.mangiabene.entities.Product;
 import com.greicy.mangiabene.repositories.CategoryRepository;
-import com.greicy.mangiabene.repositories.ProductRepository;
 import com.greicy.mangiabene.service.exceptions.DatabaseException;
 import com.greicy.mangiabene.service.exceptions.ResourceNotFoundException;
 
