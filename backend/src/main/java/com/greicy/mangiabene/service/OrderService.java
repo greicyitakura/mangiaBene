@@ -1,24 +1,20 @@
 package com.greicy.mangiabene.service;
 
-import com.greicy.mangiabene.dto.CategoryDTO;
 import com.greicy.mangiabene.dto.OrderDTO;
-import com.greicy.mangiabene.entities.Category;
+import com.greicy.mangiabene.dto.ProductDTO;
 import com.greicy.mangiabene.entities.Order;
+import com.greicy.mangiabene.entities.OrderStatus;
 import com.greicy.mangiabene.entities.Product;
-import com.greicy.mangiabene.repositories.CategoryRepository;
 import com.greicy.mangiabene.repositories.OrderRepository;
-import com.greicy.mangiabene.service.exceptions.DatabaseException;
-import com.greicy.mangiabene.service.exceptions.ResourceNotFoundException;
+import com.greicy.mangiabene.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
-import java.util.Optional;
+import java.time.Instant;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -28,72 +24,32 @@ public class OrderService {
 	private OrderRepository repository;
 	
 	@Autowired
-	private CategoryRepository categoryRepository;
+	private ProductRepository productRepository;
 	
 	@Transactional(readOnly = true)
-	public Page<OrderDTO> findAllPaged(Pageable pageable) {
-		Page<Order> list = repository.findAll(pageable);
-		return list.map(OrderDTO::new);
+	public List<OrderDTO> findAll() {
+		List<Order> list = repository.findOrdersWithProducts();
+		return list.stream().map(OrderDTO::new).collect(Collectors.toList());
 	}
 
-//	@Transactional(readOnly = true)
-//	public OrderDTO findById(Long id) {
-//		Optional<Order> obj = repository.findById(id);
-//		Order entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
-//		return new OrderDTO(entity, entity.getProducts());
-//	}
-//
-//	@Transactional(readOnly = true)
-//	public OrderDTO insert(OrderDTO dto) {
-//		Order entity = new Order();
-//		copyDtoToEntity(dto, entity);
-//
-//		entity = repository.save(entity);
-//
-//		return new OrderDTO(entity);
-//	}
-//
-//
-//	@Transactional
-//	public OrderDTO update(Long id, OrderDTO dto) {
-//		try {
-//			Order entity = repository.getOne(id);
-//			copyDtoToEntity(dto, entity);
-//			entity = repository.save(entity);
-//
-//			return new OrderDTO(entity);
-//			}
-//			catch(EntityNotFoundException e) {
-//				throw new ResourceNotFoundException("Id not found " + id);
-//		}
-//	}
-//
-//	public void delete(Long id) {
-//		try {
-//		repository.deleteById(id);
-//		}
-//		catch(EmptyResultDataAccessException e) {
-//			throw new ResourceNotFoundException("Id not found " + id);
-//		}
-//		catch(DataIntegrityViolationException e) {
-//			throw new DatabaseException("Integrity violation");
-//		}
-//	}
-//
-//
-//	private void copyDtoToEntity(OrderDTO dto, Order entity) {
-//		entity.setName(dto.getName());
-//		entity.setDescription(dto.getDescription());
-//		entity.setDate(dto.getDate());
-//		entity.setImgUrl(dto.getImgUrl());
-//		entity.setPrice(dto.getPrice());
-//
-//		entity.getCategories().clear();
-//
-//		for(CategoryDTO catDto : dto.getCategories()) {
-//			Category category = categoryRepository.getOne(catDto.getId());
-//			entity.getCategories().add(category);
-//		}
-//
-//	}
+	@Transactional
+	public OrderDTO insert(OrderDTO dto) {
+		Order order = new Order(null, dto.getAddress(), dto.getLatitude(), dto.getLongitude(), Instant.now(), OrderStatus.PENDING);
+
+		for (ProductDTO p : dto.getProducts()){
+			Product product = productRepository.getReferenceById(p.getId());
+			order.getProduct().add(product);
+		}
+
+		order = repository.save(order);
+		return new OrderDTO(order);
+	}
+
+	@Transactional
+	public OrderDTO setDelivered(Long id) {
+		Order order = repository.getReferenceById(id);
+		order.setStatus(OrderStatus.DELIVERED);
+		order = repository.save(order);
+		return new OrderDTO(order);
+	}
 }

@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.Valid;
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/orders")
@@ -29,36 +29,23 @@ public class OrderResource {
 	private OrderService service;
 	
 	@GetMapping
-	public ResponseEntity<Page<OrderDTO>> findAll(Pageable pageable){
-		Page<OrderDTO> list = service.findAllPaged(pageable);
+	public ResponseEntity<List<OrderDTO>> findAll(){
+		List<OrderDTO> list = service.findAll();
 		
 		return ResponseEntity.ok().body(list);
 	}
-	
-//	@GetMapping(value = "/{id}")
-//	public ResponseEntity<OrderDTO> findById(@PathVariable Long id) {
-//		OrderDTO dto = service.findById(id);
-//		return ResponseEntity.ok().body(dto);
-//	}
-//
-//	@PostMapping
-//	public ResponseEntity<OrderDTO> insert(@Valid @RequestBody OrderDTO dto) {
-//		dto = service.insert(dto);
-//		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-//				.buildAndExpand(dto.getId()).toUri();
-//		return ResponseEntity.created(uri).body(dto);
-//	}
-//
-//	@PutMapping(value = "/{id}")
-//	public ResponseEntity<OrderDTO> update(@Valid @PathVariable Long id, @RequestBody OrderDTO dto) {
-//		dto = service.update(id, dto);
-//		return ResponseEntity.ok().body(dto);
-//	}
-//
-//	@DeleteMapping(value = "/{id}")
-//	public ResponseEntity<OrderDTO> delete(@PathVariable Long id) {
-//		service.delete(id);
-//		return ResponseEntity.noContent().build();
-//	}
+	@PostMapping
+	public ResponseEntity<OrderDTO> insert(@RequestBody OrderDTO dto) {
+		dto = service.insert(dto);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(dto.getId()).toUri();
+		return ResponseEntity.created(uri).body(dto);
+	}
+
+	@PutMapping(value = "/{id}/delivered")
+	public ResponseEntity<OrderDTO> setDelivered(@PathVariable Long id) {
+		OrderDTO dto = service.setDelivered(id);
+		return ResponseEntity.ok().body(dto);
+	}
 }
 

@@ -1,35 +1,22 @@
 package com.greicy.mangiabene.dto;
 
-import com.greicy.mangiabene.entities.Category;
+
 import com.greicy.mangiabene.entities.Order;
 import com.greicy.mangiabene.entities.OrderStatus;
-import com.greicy.mangiabene.entities.Product;
-
-import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class OrderDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-
-    @NotBlank(message = "Campo obrigatório")
     private String address;
-
-    @NotBlank(message = "Campo obrigatório")
     private Double latitude;
-
-    @NotBlank(message = "Campo obrigatório")
     private Double longitude;
-
     private Instant moment;
-
-    @NotBlank(message = "Campo obrigatório")
     private OrderStatus status;
 
     private List<ProductDTO> products = new ArrayList<>();
@@ -37,8 +24,7 @@ public class OrderDTO implements Serializable {
     public OrderDTO(){
     }
 
-    public OrderDTO(Long id, String address, Double latitude, Double longitude, Instant moment, OrderStatus status,
-                    List<ProductDTO> products) {
+    public OrderDTO(Long id, String address, Double latitude, Double longitude, Instant moment, OrderStatus status) {
         this.id = id;
         this.address = address;
         this.latitude = latitude;
@@ -54,11 +40,7 @@ public class OrderDTO implements Serializable {
         longitude = entity.getLongitude();
         moment = entity.getMoment();
         status = entity.getStatus();
-    }
-
-    public OrderDTO(Order entity, Set<Product> products) {
-        this(entity);
-        products.forEach(cat -> this.products.add(new ProductDTO(cat)));
+        products = entity.getProduct().stream().map(ProductDTO::new).collect(Collectors.toList());
     }
 
     public Long getId() {
