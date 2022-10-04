@@ -9,11 +9,16 @@ import com.greicy.mangiabene.repositories.RoleRepository;
 import com.greicy.mangiabene.repositories.UserRepository;
 import com.greicy.mangiabene.service.exceptions.DatabaseException;
 import com.greicy.mangiabene.service.exceptions.ResourceNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +28,9 @@ import java.util.Optional;
 
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
+
+	private static Logger Logger = LoggerFactory.getLogger(UserService.class);
 
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -95,5 +102,16 @@ public class UserService {
 			entity.getRoles().add(role);
 		}
 		
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		User user = repository.findByEmail(username);
+		if (user == null){
+			Logger.error("User not found: " + username);
+			throw new UsernameNotFoundException("Email not found");
+		}
+		Logger.info("User found: " + username);
+		return user;
 	}
 }
