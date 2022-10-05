@@ -1,17 +1,23 @@
 import './styles.css';
 
-import ProductImg from 'assets/images/canolli.png';
 import ProductPrice from 'components/ProductPrice';
+import { Product } from 'types/product';
 
-const ProductCard = () => {
+
+type Props = {
+    product: Product;
+}
+
+const ProductCard = ({product} : Props) => {
+
     return (
         <div className='base-card product-card'>
             <div className='card-top-container'>
-                <img src={ProductImg} alt="Canolli" />
+                <img src={product.imgUrl} alt={product.name} />
             </div>
             <div className='card-bottom-container'>
-                <h6>Canolli</h6>
-                <ProductPrice />
+                <h6>{product.name}</h6>
+                <ProductPrice price={product.price}/>
             </div>
         </div>
 
