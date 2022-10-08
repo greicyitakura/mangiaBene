@@ -37,7 +37,7 @@ const ProductDetails = () => {
                 cumque!
               </p>
             </div>
-            <Link to="/">
+            <Link to="/orders">
                 <div className="name-price-container-cart">
                   <img src={CartIcon} alt="" />
                   <h2>Adicionar</h2>

@@ -5,6 +5,7 @@ import Home from 'pages/Home';
 import Catalog from 'pages/Catalog';
 import Admin from 'pages/Admin';
 import ProductDetails from 'pages/ProductDetails';
+import Orders from 'pages/Orders';
 
 const Routes = () => (
   <BrowserRouter>
@@ -21,6 +22,9 @@ const Routes = () => (
       </Route>
       <Route path="/Admin">
         <Admin />
+      </Route>
+      <Route path= "/orders">
+        <Orders />
       </Route>
     </Switch>
   </BrowserRouter>
