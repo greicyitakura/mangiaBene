@@ -8,11 +8,11 @@ const StepsHeader = () => {
                 <ul className="steps-items">
                     <li>
                         <span className="steps-number">1</span>
-                         Confira seus produtos
+                         Adicione sua localização
                     </li>
                     <li>
                         <span className="steps-number">2</span>
-                        Adicione sua localização
+                        Confira seus produtos
                     </li>
                     <li>
                         <span className="steps-number">3</span>
