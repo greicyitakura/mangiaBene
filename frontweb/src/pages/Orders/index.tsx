@@ -2,6 +2,7 @@ import { fetchProducts } from 'api';
 import { useEffect, useState } from 'react';
 import { Product } from 'types/product';
 import OrderLocation from './OrderLocation';
+import OrderSummary from './OrderSummary';
 import StepsHeaders from './StepsHeaders';
 
 import './styles.css';
@@ -22,6 +23,7 @@ function Orders() {
     <div className="orders-container">
       <StepsHeaders />
       <OrderLocation onChangeLocation={location => setOrderLocation(location)} />
+      <OrderSummary />
     </div>
   );
 }

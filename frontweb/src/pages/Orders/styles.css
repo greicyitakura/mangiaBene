@@ -169,6 +169,8 @@
   .leaflet-container {
     width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: center;
     border-radius: 10px;
     margin-top: 20px;
     z-index: 0;
@@ -186,6 +188,7 @@
     display: flex;
     justify-content: center;
     margin-bottom: 30px;
+    margin-top: 150px;
   }
   
   .order-summary-content {
@@ -195,31 +198,29 @@
     background: #FFF;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-    background-color: var(--primary-color);
+    background-color: #008E5B;
     color: #FFF;
     padding: 20px;
   }
   
   .amount-selected-container {
     font-weight: normal;
-    font-size: 11px;
+    font-size: 18px;
     line-height: 15px;
-    letter-spacing: -0.015em;
     display: block;
     margin-bottom: 10px;
   }
   
   .amount-selected {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 15px;
-    letter-spacing: -0.015em;
     margin-right: 5px;
   }
   
   .order-summary-total {
     font-weight: normal;
-    font-size: 14px;
+    font-size: 20px;
     line-height: 15px;
     letter-spacing: -0.015em;
     color: #FFF;
@@ -238,13 +239,12 @@
   .order-summary-make-order {
     width: 220px;
     height: 45px;
-    background: #FFF;
+    background: #198754;
     border-radius: 10px;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 22px;
     line-height: 25px;
     text-align: center;
-    letter-spacing: -0.015em;
     color: var(--primary-color);
     border: 0;
     cursor: pointer;
@@ -255,7 +255,7 @@
   }
   
   .order-summary-make-order:hover {
-    background-color: #fcf2f2;
+    background-color: #027a4e;
     transform: scale(1.01);
   }
   
