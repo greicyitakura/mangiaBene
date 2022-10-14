@@ -178,7 +178,7 @@
   
   .order-location-title {
     font-weight: bold;
-    font-size: 25px;
+    font-size: 30px;
     line-height: 25px;
     text-align: center;
     color: var(--secondary-color);
@@ -205,7 +205,7 @@
   
   .amount-selected-container {
     font-weight: normal;
-    font-size: 18px;
+    font-size: 28px;
     line-height: 15px;
     display: block;
     margin-bottom: 10px;
@@ -213,14 +213,14 @@
   
   .amount-selected {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 26px;
     line-height: 15px;
     margin-right: 5px;
   }
   
   .order-summary-total {
     font-weight: normal;
-    font-size: 20px;
+    font-size: 28px;
     line-height: 15px;
     letter-spacing: -0.015em;
     color: #FFF;
@@ -229,7 +229,7 @@
   
   .order-summary-price {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 28px;
     line-height: 19px;
     letter-spacing: -0.015em;
     color: #FFF;
@@ -242,7 +242,7 @@
     background: #198754;
     border-radius: 10px;
     font-weight: bold;
-    font-size: 22px;
+    font-size: 28px;
     line-height: 25px;
     text-align: center;
     color: var(--primary-color);

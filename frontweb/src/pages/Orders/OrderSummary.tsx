@@ -5,16 +5,16 @@ function OrderSummary() {
             <div>
             <span className="amount-selected-container">
                 <strong className="amount-selected">2</strong>
-                PEDIDOS SELECIONADOS
+                Pedidos selecionados
             </span>
             <span className="order-summary-total">
                 <strong className="amount-selected">
                     R$ 50,00 </strong>
-                VALOR TOTAL
+                Valor Total
             </span>
             </div> 
             <button className="order-summary-make-order">
-                FINALIZAR PEDIDO
+                Finalizar Pedido
             </button>
         </div>     
     </div>
