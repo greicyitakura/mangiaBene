@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const API_URL = 'https://localhost:8090';
+export const BASE_URL = process.env.REACT_APP_BACKEND_URL ?? 'http://localhost:8090';
 const mapboxToken = process.env.REACT_APP_ACESS_TOKEN_MAP_BOX;
 
 export function fetchProducts(){
-    return axios(`${API_URL}/products`)
+    return axios(`${BASE_URL}/products`)
 
 }
 
