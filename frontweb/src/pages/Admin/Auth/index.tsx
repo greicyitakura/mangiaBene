@@ -1,3 +1,5 @@
+import './styles.css';
+
 import {ReactComponent as AuthImage} from 'assets/images/manager.svg';
 import { Route, Switch } from 'react-router-dom';
 
@@ -5,8 +7,8 @@ const Auth = () => {
     return (
         <div className="auth-container">
             <div className="auth-banner-container">
-                <h1>Altere seus produtos no menu</h1>
-                <p>Você como gerente ou garçom altere informações relevantes do menu</p>
+                <h1>Altere os produtos do seu menu</h1>
+                <p>Você como gerente ou garçom pode realizar a troca de informações relevantes do menu.</p>
                 <AuthImage />
             </div>
             <div className='auth-form-container'>
