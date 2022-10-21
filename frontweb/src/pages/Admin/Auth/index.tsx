@@ -21,7 +21,7 @@ const Auth = () => {
                         <h1>Card de singup</h1>
                     </Route>
                     <Route path="/admin/auth/recover">
-                        <h1>Card de recover</h1>
+                    <h1>Card de Recover</h1>
                     </Route>
                 </Switch>
             </div>
