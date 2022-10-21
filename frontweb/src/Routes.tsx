@@ -1,4 +1,4 @@
-import { BrowserRouter, Redirect } from 'react-router-dom';
+import { Router, Redirect } from 'react-router-dom';
 import { Switch, Route } from 'react-router';
 import Navbar from 'components/Navbar';
 import Home from 'pages/Home';
@@ -7,9 +7,10 @@ import Admin from 'pages/Admin';
 import ProductDetails from 'pages/ProductDetails';
 import Orders from 'pages/Orders';
 import Auth from 'pages/Admin/Auth';
+import history from 'util/history';
 
 const Routes = () => (
-  <BrowserRouter>
+  <Router history={history}>
     <Navbar />
     <Switch>
       <Route path="/" exact>
@@ -33,7 +34,7 @@ const Routes = () => (
         <Orders />
       </Route>
     </Switch>
-  </BrowserRouter>
+  </Router>
 );
 
 export default Routes;
