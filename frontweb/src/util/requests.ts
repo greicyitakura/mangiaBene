@@ -1,37 +1,48 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import qs from 'qs';
 import history from './history';
+import jwtDecode from 'jwt-decode';
+
+type Role = 'ROLE_OPERATOR' | 'ROLE_ADMIN';
+
+type TokenData = {
+  exp: number;
+  user_name: string;
+  authorities: Role[];
+};
 
 type LoginResponse = {
-  access_token: string,
-  token_type: string,
-  expires_in: number,
-  scope: string,
-  userFirstName: string,
-  userId: number
-}
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+  scope: string;
+  userFirstName: string;
+  userId: number;
+};
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID ?? 'mangiabene';
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET ?? 'mangiabene123';
 
 const tokenKey = 'authData';
 
-export const BASE_URL = process.env.REACT_APP_BACKEND_URL ?? 'http://localhost:8090';
+export const BASE_URL =
+  process.env.REACT_APP_BACKEND_URL ?? 'http://localhost:8090';
 const mapboxToken = process.env.REACT_APP_ACESS_TOKEN_MAP_BOX;
 
-export function fetchProducts(){
-    return axios(`${BASE_URL}/products`)
+export function fetchProducts() {
+  return axios(`${BASE_URL}/products`);
 }
 
-export function fetchLocalMapBox(local: string){
-    return axios(`https://api.mapbox.com/geocoding/v5/mapbox.places/${local}.json?access_token=${mapboxToken}`)
+export function fetchLocalMapBox(local: string) {
+  return axios(
+    `https://api.mapbox.com/geocoding/v5/mapbox.places/${local}.json?access_token=${mapboxToken}`
+  );
 }
-
 
 type LoginData = {
-    username: string;
-    password: string;
-}
+  username: string;
+  password: string;
+};
 
 export const requestBackendLogin = (loginData: LoginData) => {
   const headers = {
@@ -51,7 +62,7 @@ export const requestBackendLogin = (loginData: LoginData) => {
     data,
     headers,
   });
-}
+};
 
 export const requestBackend = (config: AxiosRequestConfig) => {
   const headers = config.withCredentials
@@ -64,12 +75,12 @@ export const requestBackend = (config: AxiosRequestConfig) => {
   return axios({ ...config, baseURL: BASE_URL, headers });
 };
 
-export const saveAuthData = (obj : LoginResponse) => {
+export const saveAuthData = (obj: LoginResponse) => {
   localStorage.setItem('tokenKey', JSON.stringify(obj));
-}
+};
 
 export const getAuthData = () => {
-  const str = localStorage.getItem('tokenKey') ?? "{}";
+  const str = localStorage.getItem('tokenKey') ?? '{}';
   return JSON.parse(str) as LoginResponse;
 };
 
@@ -98,3 +109,17 @@ axios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+export const getTokenData = (): TokenData | undefined => {
+  try {
+    return jwtDecode(getAuthData().access_token) as TokenData;
+  } catch (error) {
+    return undefined;
+  }
+};
+
+export const isAuthenticate = () : boolean => {
+  const tokenData = getTokenData();
+
+  return (tokenData && tokenData.exp * 1000 > Date.now()) ? true : false;
+}
