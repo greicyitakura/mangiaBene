@@ -9,7 +9,7 @@
    
 }
  img {
-    width: 50%;
+    width: 40%;
  }
    
 .card-bottom-container {
@@ -19,4 +19,17 @@
 .card-bottom-container h6 {
     font-size: 26px;
     color: #263238;
+}
+
+@media (min-width: 576px) {
+    img {
+        width: 60%;
+     }
+
+}
+
+@media (min-width: 992px) {
+    img {
+        width: 70%;
+     }
 }

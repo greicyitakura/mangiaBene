@@ -1,13 +1,15 @@
 
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Product } from 'types/product';
 import { fetchProducts } from 'util/requests';
-import OrderLocation from './OrderLocation';
 import OrderSummary from './OrderSummary';
 import StepsHeaders from './StepsHeaders';
+import { ReactComponent as ArrowIcon } from 'assets/images/arrow.svg';
 
 import './styles.css';
 import { OrderLocationdata } from './types';
+import AddressForm from './AddressFrom';
 
 function Orders() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -21,11 +23,22 @@ function Orders() {
 
   
   return (
+    <>
+    <div className="based-card product-details-card">
+    <Link to="/products">
+      <div className="goback-container">
+        <ArrowIcon />
+        <h2>Voltar</h2>
+      </div>
+    </Link>
+    </div>
+    
     <div className="orders-container">
       <StepsHeaders />
-      <OrderLocation onChangeLocation={location => setOrderLocation(location)} />
+      <AddressForm />
       <OrderSummary />
     </div>
+    </>
   );
 }
 

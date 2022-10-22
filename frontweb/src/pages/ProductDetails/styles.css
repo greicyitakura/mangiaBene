@@ -34,7 +34,7 @@
 }
 
 .img-container img {
-    width: 80%;
+    width: 75%;
 }
 
 .name-price-container {
@@ -131,4 +131,8 @@
      .description-container {
          min-height: 470px;
      }
+     
+.img-container img {
+    width: 85%;
+}
 }
