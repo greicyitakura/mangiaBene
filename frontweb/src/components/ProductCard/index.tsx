@@ -19,7 +19,7 @@ export const ProductCard = ({ product }: Props) => {
         <img src={product.imgUrl} alt={product.name} style={{objectFit: "cover"}} />
       </div>
       <div className="card-bottom-container">
-        <h6>{product.name}{product.categories}</h6>
+        <h6>{product.name}</h6>
         <ProductPrice price={product.price} />
       </div>
 
