@@ -66,12 +66,6 @@ const ProductDetails = () => {
                 <p>{product?.description}</p>
               </div>
             )}
-            <Link to="/orders">
-              <div className="name-price-container-cart">
-                <img src={CartIcon} alt="" />
-                <h2>Adicionar</h2>
-              </div>
-            </Link>
           </div>
         </div>
       </div>

@@ -9,10 +9,12 @@ import { SpringPage } from 'types/vendor/spring';
 import { AxiosRequestConfig } from 'axios';
 import {  requestBackend } from 'util/requests';
 import CardLoader from './CardLoader';
+import { url } from 'inspector';
 
 const Catalog = () => {
   const [page, setPage] = useState<SpringPage<Product>>();
   const [isLoanding, setIsLoandin] = useState(false);
+
 
   useEffect(() => {
     const params: AxiosRequestConfig = {
@@ -43,6 +45,7 @@ const Catalog = () => {
           page?.content.map((product) => {
           return (
             <div className="col-sm-6 col-lg-4 col-xl-3" key={product.id}>
+              <h1>{product.categories}</h1>
               <Link to="/products/1">
                 <ProductCard product={product} />
               </Link>
@@ -50,7 +53,6 @@ const Catalog = () => {
           );
         }))}
       </div>
-
       <div className="row">
         <Pagination />
       </div>
