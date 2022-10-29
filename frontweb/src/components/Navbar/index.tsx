@@ -102,9 +102,9 @@ const Navbar = () => {
           </svg>
 
           <div
-              className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
+              className="rounded-circle bg-light d-flex justify-content-center align-items-center"
               style={{
-                color: "white",
+                color: "primary",
                 width: "1.5rem",
                 height: "1.5rem",
                 position: "absolute",
@@ -112,6 +112,7 @@ const Navbar = () => {
                 right: 0,
                 transform: "translate(25%, 25%)",
               }}>
+                {cartQuantity}
             </div>
 
         </Button>

@@ -2,7 +2,6 @@ import './styles.css';
 
 import { ReactComponent as ArrowIcon } from 'assets/images/arrow.svg';
 import ProductPrice from 'components/ProductPrice';
-import CartIcon from 'assets/images/cart.png';
 import { Link, useParams } from 'react-router-dom';
 import { Product } from 'types/product';
 import axios from 'axios';

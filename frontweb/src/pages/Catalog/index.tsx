@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import Pagination from 'components/Pagination';
 import { SpringPage } from 'types/vendor/spring';
 import { AxiosRequestConfig } from 'axios';
-import {  requestBackend } from 'util/requests';
+import { requestBackend } from 'util/requests';
 import CardLoader from './CardLoader';
 import { url } from 'inspector';
 
@@ -15,11 +15,10 @@ const Catalog = () => {
   const [page, setPage] = useState<SpringPage<Product>>();
   const [isLoanding, setIsLoandin] = useState(false);
 
-
   useEffect(() => {
     const params: AxiosRequestConfig = {
       method: 'GET',
-      url: "/products",
+      url: '/products',
       params: {
         page: 0,
         size: 12,
@@ -41,17 +40,17 @@ const Catalog = () => {
         <h1>Menu</h1>
       </div>
       <div className="row">
-        {isLoanding ? <CardLoader /> : (
+        {isLoanding ? (
+          <CardLoader />
+        ) : (
           page?.content.map((product) => {
-          return (
-            <div className="col-sm-6 col-lg-4 col-xl-3" key={product.id}>
-              <h1>{product.categories}</h1>
-              <Link to="/products/1">
+            return (
+              <div className="col-sm-6 col-lg-4 col-xl-3" key={product.id}>
                 <ProductCard product={product} />
-              </Link>
-            </div>
-          );
-        }))}
+              </div>
+            );
+          })
+        )}
       </div>
       <div className="row">
         <Pagination />

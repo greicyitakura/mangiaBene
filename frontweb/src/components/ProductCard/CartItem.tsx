@@ -1,16 +1,17 @@
+import { useShoppingCart } from 'components/ProductCrudCard/ShoppingCartContext';
+import { Product } from 'pages/Orders/types';
 import { Button, Stack } from 'react-bootstrap';
-import { Product } from 'types/product';
-import { useShoppingCart } from './ShoppingCartContext';
+
 
 type CartItemProps = {
-  product: Product;
+  product: Product
   quantity: number;
 };
 
 export function CartItem({ product, quantity }: CartItemProps) {
-
   return (
-
-      <Button>&times;</Button>
+  
+    <img src={product.imageURI} style={{width: "125px", height:"75px", objectFit: "cover"}} />
+    
   );
 }
