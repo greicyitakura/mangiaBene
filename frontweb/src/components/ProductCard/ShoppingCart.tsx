@@ -1,5 +1,6 @@
-import { CartItem } from 'components/ProductCrudCard/CartItem';
+
 import { Offcanvas, Stack } from 'react-bootstrap';
+import { CartItem } from './CartItem';
 import { useShoppingCart } from './ShoppingCartContext';
 
 type ShoppingCartProps = {
@@ -17,7 +18,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
     </Offcanvas.Header>
     <Offcanvas.Body>
       <Stack gap={3}>
-
+      I will not close if you click outside of me.
       </Stack>
     </Offcanvas.Body>
   </Offcanvas>

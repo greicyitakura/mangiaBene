@@ -4,7 +4,6 @@ import ProductPrice from 'components/ProductPrice';
 import { Product } from 'types/product';
 import { useShoppingCart } from './ShoppingCartContext';
 import { Button } from 'react-bootstrap';
-import { ReactComponent as SearchIcon } from 'assets/images/search.svg';
 import { Link } from 'react-router-dom';
 
 type Props = {
@@ -23,13 +22,12 @@ export const ProductCard = ({ product }: Props) => {
   return (
     <div className="base-card product-card">
       <div className="card-top-container">
-        <img
-          src={product.imgUrl}
-          alt={product.name}
-          style={{ objectFit: 'cover' }}
-        />
         <Link to="/products/1">
-          <SearchIcon />
+          <img
+            src={product.imgUrl}
+            alt={product.name}
+            style={{ objectFit: 'cover' }}
+          />
         </Link>
       </div>
 
@@ -38,7 +36,12 @@ export const ProductCard = ({ product }: Props) => {
         <ProductPrice price={product.price} />
       </div>
 
-      <div className="mt-auto btn-success">
+      <div
+        className="mt-auto btn-success"
+        style={{
+          color: 'success',
+        }}
+      >
         {quantity === 0 ? (
           <Button
             className="w-100"

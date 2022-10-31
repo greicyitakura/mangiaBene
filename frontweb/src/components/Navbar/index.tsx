@@ -104,7 +104,7 @@ const Navbar = () => {
           <div
               className="rounded-circle bg-light d-flex justify-content-center align-items-center"
               style={{
-                color: "primary",
+                color: "green",
                 width: "1.5rem",
                 height: "1.5rem",
                 position: "absolute",
