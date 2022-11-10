@@ -15,7 +15,7 @@ export const ProductCard = ({ product }: Props) => {
     getItemQuantity,
     increaseCartQuantity,
     decreaseCartQuantity,
-    removeCartQuantity,
+    removeFromCart,
   } = useShoppingCart();
   const quantity = getItemQuantity(product.id);
 
@@ -68,7 +68,7 @@ export const ProductCard = ({ product }: Props) => {
                 +
               </Button>
             </div>
-            <Button variant="danger" size="sm">
+            <Button variant="danger" size="sm" onClick={() => removeFromCart(product.id)}>
               Remover
             </Button>
           </div>

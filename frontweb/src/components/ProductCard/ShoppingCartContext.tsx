@@ -1,4 +1,7 @@
-import { createContext, ReactNode, useContext, useState } from 'react';
+import { useLocalStorage } from 'Hooks/localStorage';
+import Products from 'pages/Admin/Products';
+import { createContext, JSXElementConstructor, ReactElement, ReactNode, ReactNodeArray, ReactPortal, useContext, useState } from 'react';
+import { CartItem } from './CartItem';
 import { ShoppingCart } from './ShoppingCart';
 
 type ShoppingCartProviderProps = {
@@ -11,14 +14,14 @@ export type CartItem = {
 };
 
 type ShoppingCartContext = {
-  openCart: () => void;
-  closeCart: () => void;
-  getItemQuantity: (id: number) => number;
-  increaseCartQuantity: (id: number) => void;
-  decreaseCartQuantity: (id: number) => void;
-  removeCartQuantity: (id: number) => void;
-  cartQuantity: number;
-  cartItems: CartItem[];
+    openCart: () => void
+    closeCart: () => void
+    getItemQuantity: (id: number) => number
+    increaseCartQuantity: (id: number) => void
+    decreaseCartQuantity: (id: number) => void
+    removeFromCart: (id: number) => void
+    cartQuantity: number
+    cartItems: CartItem[]
 };
 
 const ShoppingCartContext = createContext({} as ShoppingCartContext);
@@ -30,7 +33,7 @@ export function useShoppingCart() {
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useLocalStorage<CartItem[]>("shopping-cart",[]);
 
   const cartQuantity = cartItems.reduce(
     (quantity, item) => item.quantity + quantity,
@@ -77,7 +80,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     });
   }
 
-  function removeCartQuantity(id: number) {
+  function removeFromCart(id: number) {
     setCartItems((currItems) => {
       return currItems.filter((item) => item.id !== id);
     });
@@ -89,7 +92,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         getItemQuantity,
         increaseCartQuantity,
         decreaseCartQuantity,
-        removeCartQuantity,
+        removeFromCart,
         openCart,
         closeCart,
         cartItems,
@@ -98,7 +101,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     >
       {children}
 
-      <ShoppingCart isOpen={isOpen}  />
+      <ShoppingCart isOpen={isOpen} />
     </ShoppingCartContext.Provider>
   );
 }
