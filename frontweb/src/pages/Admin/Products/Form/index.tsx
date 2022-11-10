@@ -49,17 +49,11 @@ const Form = () => {
   }, [isEdditing, productId, setValue]);
 
   const onSubmit = (formData: Product) => {
-    const data = {
-      ...formData,
-      imgUrl: isEdditing
-        ? formData.imgUrl
-        : 'https://raw.githubusercontent.com/greicyitakura/mangiaBene/main/pitII/imagens/antepasto.png?raw=true',
-      categories: isEdditing ? formData.categories : [{ id: 1, name: '' }],
-    };
+    
     const config: AxiosRequestConfig = {
       method: isEdditing ? 'PUT' : 'POST',
       url: isEdditing ? `/products/${productId}` : '/products',
-      data,
+      data: formData,
       withCredentials: true,
     };
 
@@ -137,7 +131,24 @@ const Form = () => {
                   {errors.price?.message}
                 </div>
               </div>
-            </div>
+
+              <div className="margin-bottom-30">
+                <input
+                  {...register('imgUrl', {
+                    required: 'Campo obrigatório',
+                  })}
+                  type="text"
+                  className={`form-control base-input ${
+                    errors.imgUrl ? 'is-invalid' : ''
+                  }`}
+                  placeholder="url da imagem do produto"
+                  name="imgUrl"
+                />
+                <div className="invalid-feedback d-block">
+                  {errors.imgUrl?.message}
+                </div>
+              </div>
+
             <div className="col-lg-6">
               <div>
                 <textarea
@@ -156,6 +167,7 @@ const Form = () => {
                 </div>
               </div>
             </div>
+          </div>
           </div>
           <div className="product-crud-buttons-container">
             <button
