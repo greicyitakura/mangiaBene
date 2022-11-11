@@ -1,5 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import Pagination from 'components/Pagination';
+import ProductFilter, { ProductFilterData } from 'components/ProductFilter';
 import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Product } from 'types/product';
@@ -45,7 +46,6 @@ const List = () => {
   }, [getProducts]);
 
   return (
-    <>
       <div className="product-crud-container">
         <div className="product-crud-bar-container">
           <Link to="/admin/products/create">
@@ -53,8 +53,10 @@ const List = () => {
               Adicionar
             </button>
           </Link>
-          <div className="base-card product-filter-container">Search bar</div>
-        </div>
+          <ProductFilter onSubmitFilter={function (data: ProductFilterData): void {
+          throw new Error('Function not implemented.');
+        } } />
+          </div>
         <div className="row">
           {page?.content.map((product) => (
             <div key={product.id} className="col-sm-6 col-md-12">
@@ -68,7 +70,6 @@ const List = () => {
           onChange={handlePageChance}
         />
       </div>
-    </>
   );
 };
 
