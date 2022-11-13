@@ -22,7 +22,7 @@ export const ProductCard = ({ product }: Props) => {
   return (
     <div className="base-card product-card">
       <div className="card-top-container">
-        <Link to="/products/1">
+        <Link to={`/products/${product.id}`}>
           <img
             src={product.imgUrl}
             alt={product.name}

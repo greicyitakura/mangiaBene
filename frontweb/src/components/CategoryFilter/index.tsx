@@ -6,22 +6,22 @@ import { ReactComponent as SearchIcon } from 'assets/images/search.svg';
 import './styles.css';
 import Select from 'react-select';
 
-export type ProductFilterData = {
+export type CategoryFilterData = {
   name: string;
   category: Category | null;
 };
 
 type Props = {
-  onSubmitFilter: (data: ProductFilterData) => void;
+  onSubmitFilter: (data: CategoryFilterData) => void;
 };
 
-const ProductFilter = ({ onSubmitFilter }: Props) => {
+const CategoryFilter = ({ onSubmitFilter }: Props) => {
   const [selectCategories, setSelectCategories] = useState<Category[]>([]);
 
   const { register, handleSubmit, setValue, getValues, control } =
-    useForm<ProductFilterData>();
+    useForm<CategoryFilterData>();
 
-  const onSubmit = (formData: ProductFilterData) => {
+  const onSubmit = (formData: CategoryFilterData) => {
     onSubmitFilter(formData);
   };
 
@@ -33,7 +33,7 @@ const ProductFilter = ({ onSubmitFilter }: Props) => {
   const handleChangeCategory = (value: Category) => {
     setValue('category', value);
 
-    const obj: ProductFilterData = {
+    const obj: CategoryFilterData = {
       name: getValues('name'),
       category: getValues('category'),
     };
@@ -55,7 +55,7 @@ const ProductFilter = ({ onSubmitFilter }: Props) => {
             {...register('name')}
             type="text"
             className="form-control"
-            placeholder="Nome do produto"
+            placeholder="Nome da categoria"
             name="name"
           />
           <button className="product-filter-search-icon">
@@ -95,4 +95,4 @@ const ProductFilter = ({ onSubmitFilter }: Props) => {
   );
 };
 
-export default ProductFilter;
+export default CategoryFilter;

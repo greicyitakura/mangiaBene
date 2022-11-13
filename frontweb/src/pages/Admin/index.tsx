@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import Users from "./Users";
 import PrivateRoute from 'components/PrivateRoute';
 import Products from './Products';
+import Categories from './Categories';
 
 
 
@@ -18,7 +19,7 @@ const Admin = () => {
           <Products />
         </PrivateRoute>
         <PrivateRoute path="/admin/categories">
-          <h1>Category CRUD</h1>
+          <Categories />
         </PrivateRoute>
         <PrivateRoute path="/admin/users" roles={['ROLE_ADMIN']}>
           <Users />

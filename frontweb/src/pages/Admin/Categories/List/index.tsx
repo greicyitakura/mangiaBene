@@ -1,22 +1,23 @@
 import { AxiosRequestConfig } from 'axios';
+import CategoryFilter, { CategoryFilterData } from 'components/CategoryFilter';
 import Pagination from 'components/Pagination';
-import ProductFilter, { ProductFilterData } from 'components/ProductFilter';
 import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import { Category } from 'types/category';
 import { Product } from 'types/product';
 import { SpringPage } from 'types/vendor/spring';
 import { requestBackend } from 'util/requests';
-import ProductCrudCard from '../ProductCrudCard';
+import CategoryCrudCard from '../CategoryCrudCard';
 
 import './styles.css';
 
 type ControlComponentsData = {
   activePage: number;
-  filterData: ProductFilterData;
+  filterData: CategoryFilterData;
 };
 
-const List = () => {
-  const [page, setPage] = useState<SpringPage<Product>>();
+const ListC = () => {
+  const [page, setPage] = useState<SpringPage<Category>>();
 
   const [controlComponentsData, setControlComponentsData] =
     useState<ControlComponentsData>({
@@ -28,17 +29,17 @@ const List = () => {
     setControlComponentsData({ activePage: pageNumber, filterData: controlComponentsData.filterData });
   };
 
-  const handleSubmitFilter = (data: ProductFilterData) => {
+  const handleSubmitFilter = (data: CategoryFilterData) => {
     setControlComponentsData({ activePage: 0, filterData: data });   
   };
 
-  const getProducts = useCallback(() => {
+  const getCategories = useCallback(() => {
     const config: AxiosRequestConfig = {
       method: 'GET',
-      url: '/products',
+      url: '/categories',
       params: {
         page: controlComponentsData.activePage,
-        size: 3,
+        size: 12,
         name: controlComponentsData.filterData.name,
         categoryId: controlComponentsData.filterData.category?.id
       },
@@ -50,23 +51,23 @@ const List = () => {
   }, [controlComponentsData]);
 
   useEffect(() => {
-    getProducts();
-  }, [getProducts]);
+    getCategories();
+  }, [getCategories]);
 
   return (
     <div className="product-crud-container">
       <div className="product-crud-bar-container">
-        <Link to="/admin/products/create">
+        <Link to="/admin/categories/create">
           <button className="btn btn-success text-white btn-crud-add">
             ADICIONAR
           </button>
         </Link>
-        <ProductFilter onSubmitFilter={handleSubmitFilter} />
+        <CategoryFilter onSubmitFilter={handleSubmitFilter} />
       </div>
       <div className="row">
-        {page?.content.map((product) => (
-          <div key={product.id} className="col-sm-6 col-md-12">
-            <ProductCrudCard product={product} onDelete={getProducts} />
+        {page?.content.map((category) => (
+          <div key={category.id} className="col-sm-6 col-md-12">
+            <CategoryCrudCard category={category} onDelete={getCategories} />
           </div>
         ))}
       </div>
@@ -80,4 +81,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default ListC;

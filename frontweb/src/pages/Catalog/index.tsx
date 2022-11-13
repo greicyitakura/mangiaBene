@@ -9,9 +9,10 @@ import { AxiosRequestConfig } from 'axios';
 import { requestBackend } from 'util/requests';
 import CardLoader from './CardLoader';
 
+
 const Catalog = () => {
   const [page, setPage] = useState<SpringPage<Product>>();
-  const [isLoanding, setIsLoandin] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const getProducts = (pageNumber: number) => {
     const params: AxiosRequestConfig = {
@@ -22,41 +23,45 @@ const Catalog = () => {
         size: 8,
       },
     };
-    setIsLoandin(true);
+
+    setIsLoading(true);
     requestBackend(params)
       .then((response) => {
         setPage(response.data);
       })
       .finally(() => {
-        setIsLoandin(false);
+        setIsLoading(false);
       });
   }
 
-
   useEffect(() => {
     getProducts(0);
-  },[]);
-     
+  }, []);
+
   return (
     <div className="container my-4 catalog-container">
       <div className="row catalog-title-container">
         <h1>Menu</h1>
       </div>
+
       <div className="row">
-        {isLoanding ? (
+        {isLoading ? (
           <CardLoader />
         ) : (
-          page?.content.map((product) => {
-            return (
-              <div className="col-sm-6 col-lg-4 col-xl-3" key={product.id}>
+          page?.content.map((product) => (
+            <div className="col-sm-6 col-lg-4 col-xl-3" key={product.id}>
                 <ProductCard product={product} />
-              </div>
-            );
-          })
+            </div>
+          ))
         )}
       </div>
+
       <div className="row">
-        <Pagination pageCount={page ? page.totalPages : 0} range={3}  onChange={getProducts}/>
+        <Pagination 
+          pageCount={page ? page.totalPages : 0} 
+          range={3} 
+          onChange={getProducts}
+        />
       </div>
     </div>
   );

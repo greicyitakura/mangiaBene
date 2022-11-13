@@ -1,6 +1,7 @@
 import { useLocalStorage } from 'Hooks/localStorage';
-import Products from 'pages/Admin/Products';
-import { createContext, JSXElementConstructor, ReactElement, ReactNode, ReactNodeArray, ReactPortal, useContext, useState } from 'react';
+import { createContext,  ReactNode, useContext, useState } from 'react';
+import { Product } from 'types/product';
+import ProductCard from '.';
 import { CartItem } from './CartItem';
 import { ShoppingCart } from './ShoppingCart';
 
@@ -11,6 +12,7 @@ type ShoppingCartProviderProps = {
 export type CartItem = {
   id: number;
   quantity: number;
+  product?: Product;
 };
 
 type ShoppingCartContext = {

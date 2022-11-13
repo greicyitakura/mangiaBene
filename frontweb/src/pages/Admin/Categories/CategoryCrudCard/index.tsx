@@ -1,25 +1,24 @@
 import './styles.css';
 
-import ProductPrice from 'components/ProductPrice';
-import { Product } from 'types/product';
-import CategoryBadge from '../ProductBadge';
+
 import { Link } from 'react-router-dom';
 import { AxiosRequestConfig } from 'axios';
 import { requestBackend } from 'util/requests';
+import { Category } from 'types/category';
 
 type Props = {
-  product: Product;
+  category: Category;
   onDelete: Function;
 };
 
-const ProductCrudCard = ({ product, onDelete }: Props) => {
-  const handleDelete = (productId: number) => {
+const CategoryCrudCard = ({ category, onDelete }: Props) => {
+  const handleDelete = (categoryId: number) => {
     if(!window.confirm("Deseja cancelar?")) {
       return;
     }
     const config: AxiosRequestConfig = {
       method: 'DELETE',
-      url: `/products/${productId}`,
+      url: `/categories/${categoryId}`,
       withCredentials: true,
     };
     requestBackend(config).then(() => {
@@ -29,28 +28,21 @@ const ProductCrudCard = ({ product, onDelete }: Props) => {
 
   return (
     <div className="base-card product-crud-card">
-      <div className="product-crud-card-top-container">
-        <img src={product.imgUrl} alt={product.name} />
-      </div>
+     
       <div className="product-crud-card-description">
         <div className="product-crud-card-bottom-container">
-          <h6>{product.name}</h6>
-          <ProductPrice price={product.price} />
+          <h6>{category.name}</h6>
         </div>
-        <div className="product-crud-categories-container">
-          {product.categories.map((category) => (
-            <CategoryBadge name={category.name} key={category.id} />
-          ))}
-        </div>
+        
       </div>
       <div className="product-crud-card-buttons-container">
         <button
-          onClick={() => handleDelete(product.id)}
+          onClick={() => handleDelete(category.id)}
           className="btn btn-outline-danger product-crud-card-button-first"
         >
           Excluir
         </button>
-        <Link to={`/admin/products/${product.id}`}>
+        <Link to={`/admin/category/${category.id}`}>
           <button className="btn btn-outline-secondary product-crud-card-button">
             Editar
           </button>
@@ -60,4 +52,4 @@ const ProductCrudCard = ({ product, onDelete }: Props) => {
   );
 };
 
-export default ProductCrudCard;
+export default CategoryCrudCard;
