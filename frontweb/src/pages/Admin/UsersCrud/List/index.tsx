@@ -1,46 +1,45 @@
 import { AxiosRequestConfig } from 'axios';
-import CategoryFilter, { CategoryFilterData } from 'components/CategoryFilter';
+import { CategoryFilterData } from 'components/CategoryFilter';
 import Pagination from 'components/Pagination';
+import { UserFilterData } from 'components/UserFilterData';
 import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { Category } from 'types/category';
+import { User } from 'types/user';
 import { SpringPage } from 'types/vendor/spring';
 import { requestBackend } from 'util/requests';
-import CategoryCrudCard from '../CategoryCrudCard';
 
 import './styles.css';
 
 type ControlComponentsData = {
   activePage: number;
-  filterData: CategoryFilterData;
+  filterData: UserFilterData;
 };
 
-const ListC = () => {
-  const [page, setPage] = useState<SpringPage<Category>>();
+const ListU = () => {
+  const [page, setPage] = useState<SpringPage<User>>();
 
   const [controlComponentsData, setControlComponentsData] =
     useState<ControlComponentsData>({
       activePage: 0,
-      filterData: { name: '', category: null },
+      filterData: { name: '', email: '' },
     });
 
   const handlePageChange = (pageNumber: number) => {
     setControlComponentsData({ activePage: pageNumber, filterData: controlComponentsData.filterData });
   };
 
-  const handleSubmitFilter = (data: CategoryFilterData) => {
+  const handleSubmitFilter = (data: UserFilterData) => {
     setControlComponentsData({ activePage: 0, filterData: data });   
   };
 
-  const getCategories = useCallback(() => {
+  const getUsers = useCallback(() => {
     const config: AxiosRequestConfig = {
       method: 'GET',
-      url: '/categories',
+      url: '/users',
       params: {
         page: controlComponentsData.activePage,
-        size: 12,
+        size: 4,
         name: controlComponentsData.filterData.name,
-        categoryId: controlComponentsData.filterData.category?.id
       },
     };
 
@@ -50,26 +49,20 @@ const ListC = () => {
   }, [controlComponentsData]);
 
   useEffect(() => {
-    getCategories();
-  }, [getCategories]);
+    getUsers();
+  }, [getUsers]);
 
   return (
     <div className="product-crud-container">
       <div className="product-crud-bar-container">
-        <Link to="/admin/categories/create">
+        <Link to="/admin/users/create">
           <button className="btn btn-success text-white btn-crud-add">
             ADICIONAR
           </button>
         </Link>
-        <CategoryFilter onSubmitFilter={handleSubmitFilter} />
+        
       </div>
-      <div className="row">
-        {page?.content.map((category) => (
-          <div key={category.id} className="col-sm-6 col-md-12">
-            <CategoryCrudCard category={category} onDelete={getCategories} />
-          </div>
-        ))}
-      </div>
+      
       <Pagination
         forcePage={page?.number}
         pageCount={page ? page.totalPages : 0}
@@ -80,4 +73,4 @@ const ListC = () => {
   );
 };
 
-export default ListC;
+export default ListU;
