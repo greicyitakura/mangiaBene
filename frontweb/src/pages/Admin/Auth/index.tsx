@@ -3,6 +3,8 @@ import './styles.css';
 import {ReactComponent as AuthImage} from 'assets/images/manager.svg';
 import { Route, Switch } from 'react-router-dom';
 import Login from './Login';
+import SingUp from './SingUp';
+import Recover from './Recover';
 
 const Auth = () => {
     return (
@@ -17,11 +19,11 @@ const Auth = () => {
                     <Route path="/admin/auth/login">
                        <Login />
                     </Route>
-                    <Route path="/admin/auth/singup">
-                        <h1>Card de singup</h1>
+                    <Route path="/admin/auth/register">
+                      <SingUp />
                     </Route>
                     <Route path="/admin/auth/recover">
-                    <h1>Card de Recover</h1>
+                    <Recover />
                     </Route>
                 </Switch>
             </div>

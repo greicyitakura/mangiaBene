@@ -6,9 +6,9 @@ import { useContext, useEffect } from 'react';
 import history from 'util/history';
 import { AuthContext } from 'AuthContext';
 import { useShoppingCart } from 'components/ProductCard/ShoppingCartContext';
-import { Button } from 'react-bootstrap';
 import { getTokenData, isAuthenticated } from 'util/auth';
 import { removeAuthData } from 'util/storage';
+import { Button } from 'react-bootstrap';
 
 const Navbar = () => {
   const { authContextData, setAuthContextData } = useContext(AuthContext);

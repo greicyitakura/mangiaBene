@@ -1,6 +1,5 @@
 
 import { Button, Offcanvas, Stack } from 'react-bootstrap';
-import { formatPrice } from 'util/formatters';
 import { useShoppingCart } from './ShoppingCartContext';
 
 type ShoppingCartProps = {

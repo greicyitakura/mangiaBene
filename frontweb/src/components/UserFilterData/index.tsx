@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 export type UserFilterData = {
   name: string;
   email: string;
+  cargo: string;
 };
 
 type Props = {
@@ -27,6 +28,7 @@ const UserFilter = ({ onSubmitFilter }: Props) => {
   const handleFormClear = () => {
     setValue('name', '');
     setValue('email', '');
+    setValue('cargo', '');
   };
 
 
@@ -54,6 +56,15 @@ const UserFilter = ({ onSubmitFilter }: Props) => {
             className="form-control"
             placeholder="Email do Funcionário"
             name="email"
+          />
+          </div>
+          <div className="product-filter-name-container">
+          <input
+            {...register('cargo')}
+            type="text"
+            className="form-control"
+            placeholder="Cargo do Funcionário"
+            name="cargo"
           />
           </div>
           <button className="product-filter-search-icon">
