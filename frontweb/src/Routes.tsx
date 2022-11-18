@@ -5,7 +5,6 @@ import Home from 'pages/Home';
 import Catalog from 'pages/Catalog';
 import Admin from 'pages/Admin';
 import ProductDetails from 'pages/ProductDetails';
-import Orders from 'pages/Orders';
 import Auth from 'pages/Admin/Auth';
 import history from 'util/history';
 
@@ -31,7 +30,7 @@ const Routes = () => (
         <Admin />
       </Route>
       <Route path= "/orders">
-        <Orders />
+        <h4>orders</h4>
       </Route>
     </Switch>
   </Router>

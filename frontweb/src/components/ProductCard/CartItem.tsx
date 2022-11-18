@@ -1,4 +1,3 @@
-
 import { Button, Stack } from 'react-bootstrap';
 import { Product } from 'types/product';
 import { formatPrice } from 'util/formatters';
@@ -12,39 +11,31 @@ type CartItemProps = {
 export function CartItem({ quantity, product }: CartItemProps) {
   const { removeFromCart } = useShoppingCart();
 
-  return (
+    return (
     <Stack direction="horizontal" gap={2} className="d-flex align-items-center">
-      
-        <img
-          src={product.imgUrl}
-          style={{ width: '115px', height: '105px', objectFit: 'cover' }}
-          alt=""
-        />
-
+     
       <div className="me-auto">
         <div>
-          {product.name} {" "}
+          {product.name}{' '}
           {quantity > 1 && (
-            <span className="text-muted" style={{ fontSize: '1.5rem' }}>
+            <span className="text-muted" style={{ fontSize: '.95rem' }}>
               X{quantity}
             </span>
           )}
         </div>
-        <div className='ms-auto text-muted' style={{ fontSize: '.5rem' }}>
-        <span>R$</span>
-            <h4>{formatPrice(product.price)}</h4>
-        </div>
-        <div className='text-muted' style={{ fontSize: '.65rem' }}>
-        <span>R$</span>
-            <h4>{formatPrice(product.price * quantity)}</h4>
+
+        <div className="text-muted" style={{ fontSize: '.75rem' }}>
+          <span>R$ unidade</span>
+          <h5>{formatPrice(product.price)}</h5>
         </div>
       </div>
+
+      <h4>R$ {formatPrice(product.price * quantity)}</h4>
+
       <Button
         variant="outline-danger"
         size="sm"
-        onClick={() => removeFromCart(product.id)}
-      >
-        &times;
+        onClick={() => removeFromCart(product.id)}>&times;
       </Button>
     </Stack>
   );

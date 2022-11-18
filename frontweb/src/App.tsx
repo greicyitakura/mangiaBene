@@ -8,7 +8,8 @@ import { AuthContext, AuthContextData } from 'AuthContext';
 import { useState } from 'react';
 import { ShoppingCartProvider } from 'components/ProductCard/ShoppingCartContext';
 
-function App() {
+
+function App()  {
   const [authContextData, setAuthContextData] = useState<AuthContextData>({
     authenticated: false,
   });

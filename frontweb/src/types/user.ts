@@ -1,5 +1,10 @@
-export type User = {
-  nome: string;
-  id: number;
+export type UserResponse ={
+  content: User[];
+  totalPages: number;  
+}
+
+export type User ={
+  id:number;
+  name: string;
   email: string;
-};
+}
