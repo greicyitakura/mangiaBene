@@ -41,7 +41,7 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-md navbar-dark bg-success main-nav">
       <div className="container-fluid">
         <Link to="/" className="nav-logo-text">
-          <a>Mangia Bene</a>
+          Mangia Bene
         </Link>
         <button
           className="navbar-toggler"
@@ -92,7 +92,7 @@ const Navbar = () => {
 
         <Button onClick={openCart}
             style={{ width: "3rem", height: "3rem", position: "relative" }}
-            variant="outline-primary"
+            variant="outline-light"
             className="rounded-circle">
           <svg
             xmlns="http://www.w3.org/2000/svg"
