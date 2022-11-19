@@ -51,7 +51,7 @@ A atividade a ser realizada consiste em:
 Pré-requisitos: Java 11
 ```bash
 # clonar repositório
-git clone https://github.com/greicyitakura/pitII-mangiaBene
+git clone https://github.com/greicyitakura/mangiaBene
 # entrar na pasta do projeto back end
 cd backend
 # executar o projeto
@@ -61,7 +61,7 @@ cd backend
 Pré-requisitos: npm / yarn
 ```bash
 # clonar repositório
-git clone https://github.com/greicyitakura/pitII-mangiaBene
+git clone https://github.com/greicyitakura/mangiaBene
 # entrar na pasta do projeto front end web
 cd front-web
 # instalar dependências
