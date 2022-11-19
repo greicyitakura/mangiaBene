@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button, Stack } from 'react-bootstrap';
 import { Product } from 'types/product';
 import { formatPrice } from 'util/formatters';
