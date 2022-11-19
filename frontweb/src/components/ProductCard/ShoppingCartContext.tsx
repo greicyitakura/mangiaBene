@@ -12,11 +12,11 @@ type ShoppingCartProviderProps = {
 export type CartItem = {
   id: number;
   quantity: number;
-  };  
+};
 
 export interface CartItemProduct extends Product {
   quantity: number;
-};
+}
 
 type ShoppingCartContext = {
   openCart: () => void;
@@ -26,7 +26,9 @@ type ShoppingCartContext = {
   decreaseCartQuantity: (id: number) => void;
   removeFromCart: (id: number) => void;
   cartQuantity: number;
-  cartItems: CartItemProduct[];
+  cartItems: CartItem[];
+  cartProducts: any;
+  getCartProducts: () => void;
 };
 
 const ShoppingCartContext = createContext({} as ShoppingCartContext);
@@ -41,9 +43,9 @@ const getProduct = async (id: number) => {
     url: `/products/${id}`,
   };
   return requestBackend(params);
-}
+};
 
-export async function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
+export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const [cartProducts, setCartProducts] = useState({});
@@ -53,11 +55,6 @@ export async function ShoppingCartProvider({ children }: ShoppingCartProviderPro
     []
   );
 
-  const values = await Promise.all(
-    cartItems.map(({id}) => getProduct(id)));
-    setCartProducts (values.map((value) => value.data));
-    
-
   const cartQuantity = cartItems.reduce(
     (quantity, item) => item.quantity + quantity,
     0
@@ -66,6 +63,20 @@ export async function ShoppingCartProvider({ children }: ShoppingCartProviderPro
   const openCart = () => setIsOpen(true);
 
   const closeCart = () => setIsOpen(false);
+
+  async function getCartProducts() {
+    if (cartItems.length) {
+      const values = await Promise.all(
+        cartItems.map(({ id }) => getProduct(id))
+      );
+      setCartProducts(
+        values.reduce(
+          (acc, value) => ({ ...acc, [value.data.id]: value.data }),
+          {}
+        )
+      );
+    }
+  }
 
   function getItemQuantity(id: number) {
     return cartItems.find((item) => item.id === id)?.quantity || 0;
@@ -120,7 +131,8 @@ export async function ShoppingCartProvider({ children }: ShoppingCartProviderPro
         closeCart,
         cartItems,
         cartQuantity,
-      
+        cartProducts,
+        getCartProducts,
       }}
     >
       {children}
