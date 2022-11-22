@@ -15,16 +15,15 @@ type CredentialsDTO = {
 
 type LocationState = {
   from: string;
-}
+};
 
 const Login = () => {
-
   const location = useLocation<LocationState>();
 
-  const { from } =  location.state || { from: { pathname: '/admin'}}
+  const { from } = location.state || { from: { pathname: '/admin' } };
 
   const { setAuthContextData } = useContext(AuthContext);
-  
+
   const [hasError, setHasError] = useState(false);
 
   const {
@@ -61,15 +60,17 @@ const Login = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
           <input
-             {...register('username', {
+            {...register('username', {
               required: 'Campo obrigatório',
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: 'Email inválido'
-              }
+                message: 'Email inválido',
+              },
             })}
             type="text"
-            className={`form-control base-input ${errors.username ? 'is-invalid' : ''}`}
+            className={`form-control base-input ${
+              errors.username ? 'is-invalid' : ''
+            }`}
             placeholder="Email"
             name="username"
           />
@@ -80,10 +81,12 @@ const Login = () => {
         <div className="mb-2">
           <input
             {...register('password', {
-              required: 'Campo obrigatório'
+              required: 'Campo obrigatório',
             })}
             type="password"
-            className={`form-control base-input ${errors.password ? 'is-invalid' : ''}`}
+            className={`form-control base-input ${
+              errors.password ? 'is-invalid' : ''
+            }`}
             placeholder="Password"
             name="password"
           />

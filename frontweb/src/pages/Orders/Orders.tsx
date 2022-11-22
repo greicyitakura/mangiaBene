@@ -1,7 +1,6 @@
 import { Button } from 'react-bootstrap';
 import { toast, ToastContainer } from 'react-toastify';
 import {
-  MDBBtn,
   MDBCard,
   MDBCardBody,
   MDBCol,
