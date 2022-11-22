@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Button, Offcanvas, Stack } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { formatPrice } from 'util/formatters';
@@ -13,12 +13,17 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
   const { closeCart, cartItems, cartProducts, getCartProducts } =
     useShoppingCart();
 
-  const [hasCartProducts, setHasCartProducts] = useState(false);
+  const calculateTotalAmount = (): number => {
+    const selectedItems = cartItems.map((item) => cartProducts[item.id]?.price * item.quantity);
+    return selectedItems.reduce((acc, value) => acc + value)
+  }
+
+  const totalAmount = useMemo<number>(calculateTotalAmount, [cartItems, cartProducts])
 
   useEffect(() => {
     getCartProducts();
-    console.log('produtos');
-  }, [cartItems]);
+
+  }, [cartItems, getCartProducts]);
 
   return (
     <Offcanvas show={isOpen} onHide={closeCart} placement="end">
@@ -39,6 +44,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
             <Button className="me-auto fw-bold fs-5">Finalizar pedido</Button>
           </Link>
         </Stack>
+        <p><b>Total: {formatPrice(totalAmount)}</b></p>
       </Offcanvas.Body>
     </Offcanvas>
   );
