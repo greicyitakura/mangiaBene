@@ -117,7 +117,7 @@ function OrdersPurchage() {
                   type="checkbox"
                   value=""
                   id="form7Example8"
-                  checked
+                
                 />
                 <h6>Pagamento com PIX ou Na entrega</h6>
               </div>
@@ -127,7 +127,7 @@ function OrdersPurchage() {
                   type="checkbox"
                   value=""
                   id="form7Example8"
-                  checked
+                  
                 />
                 <h6>Deseja encontrar com o entregador?</h6>
               </div>
