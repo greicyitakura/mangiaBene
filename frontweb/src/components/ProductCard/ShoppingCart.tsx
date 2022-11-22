@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Button, Offcanvas, Stack } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { CartItem } from './CartItem';
 import { useShoppingCart } from './ShoppingCartContext';
 
@@ -9,6 +9,8 @@ export type ShoppingCartProps = {
 };
 
 export function ShoppingCart({ isOpen }: ShoppingCartProps) {
+  const history = useHistory();
+
   const { closeCart, cartItems, cartProducts, getCartProducts } =
     useShoppingCart();
 
@@ -34,8 +36,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
             />
           ))}
           <Link to={'/orders'}>
-        
-            <Button className="me-auto fw-bold fs-5">Finalizar pedido</Button>
+            <Button className="me-auto fw-bold fs-5" onClick={() => history.push('/orders')}>Finalizar pedido</Button>
           </Link>
         </Stack>
       </Offcanvas.Body>
