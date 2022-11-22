@@ -1,5 +1,5 @@
 import { Route, Switch } from "react-router";
-import FormUsers from "./FormUsers";
+import FormUser from "./FormUser";
 import ListUsers from "./ListUsers";
 
  
@@ -13,7 +13,7 @@ const Users = () => {
         </Route>
 
         <Route path="/admin/users/:userId">
-          <FormUsers />
+          <FormUser />
         </Route>
 
       </Switch>

@@ -7,6 +7,7 @@ import Admin from 'pages/Admin';
 import ProductDetails from 'pages/ProductDetails';
 import Auth from 'pages/Admin/Auth';
 import history from 'util/history';
+import Orders from 'pages/Orders/Orders';
 
 const Routes = () => (
   <Router history={history}>
@@ -30,7 +31,7 @@ const Routes = () => (
         <Admin />
       </Route>
       <Route path= "/orders">
-        <h4>orders</h4>
+       <Orders />
       </Route>
     </Switch>
   </Router>

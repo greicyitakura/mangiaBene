@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import qs from 'qs';
+import { getSessionData } from './auth';
 import history from './history';
 import { getAuthData } from './storage';
 
@@ -48,6 +49,25 @@ export const requestBackend = (config: AxiosRequestConfig) => {
 
   return axios({ ...config, baseURL: BASE_URL, headers });
 };
+
+export const makeRequest = (params: AxiosRequestConfig) => {
+  return axios({
+    ...params,
+    baseURL: BASE_URL
+  });
+}
+
+export const makePrivateRequest = (params: AxiosRequestConfig) => {
+  const sessionData = getSessionData();
+
+  const headers = {
+    'Authorization': `Bearer ${sessionData.access_token}`
+  }
+
+  return makeRequest({ ...params, headers });
+
+}
+
 
 // Add a request interceptor
 axios.interceptors.request.use(

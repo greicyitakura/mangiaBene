@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Button, Offcanvas, Stack } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { formatPrice } from 'util/formatters';
 import { CartItem } from './CartItem';
 import { useShoppingCart } from './ShoppingCartContext';
 
@@ -34,8 +33,8 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
               key={cartItem.id}
             />
           ))}
-
-          <Link to="/orders">
+          <Link to={'/orders'}>
+        
             <Button className="me-auto fw-bold fs-5">Finalizar pedido</Button>
           </Link>
         </Stack>

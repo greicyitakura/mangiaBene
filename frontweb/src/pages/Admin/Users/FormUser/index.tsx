@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router';
 import { toast } from 'react-toastify';
 import { requestBackend } from 'util/requests';
-import BaseForm from '../BaseForm';
+import BaseForm from '../../BaseForm';
 import './styles.scss';
 
 export type FormUserState = {
