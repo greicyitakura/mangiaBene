@@ -18,7 +18,7 @@ export interface CartItemProduct extends Product {
   quantity: number;
 }
 
-type ShoppingCartContext = {
+type ShoppingCartContextType = {
   openCart: () => void;
   closeCart: () => void;
   getItemQuantity: (id: number) => number;
@@ -31,7 +31,7 @@ type ShoppingCartContext = {
   getCartProducts: () => void;
 };
 
-const ShoppingCartContext = createContext({} as ShoppingCartContext);
+const ShoppingCartContext = createContext({} as ShoppingCartContextType);
 
 export function useShoppingCart() {
   return useContext(ShoppingCartContext);
@@ -52,7 +52,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
 
   const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
     'shopping-cart',
-    []
+    [] as CartItem[]
   );
 
   const cartQuantity = cartItems.reduce(
