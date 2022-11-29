@@ -30,11 +30,11 @@ function OrdersPurchage() {
              
               <p className="fw-bold mb-4">Adicione o cartão:</p>
               <MDBInput
-                label="Nome"
+                label="Nome completo"
                 id="form3"
                 type="text"
                 size="lg"
-                value="Maria Silva"
+                placeholder="Nome Completo"
               />
               <MDBRow className="my-4">
                 <MDBCol size="7">
@@ -43,12 +43,12 @@ function OrdersPurchage() {
                     id="form4"
                     type="text"
                     size="lg"
-                    value="1234 5678 1234 5678"
+                    placeholder="1234 5678 1234 5678"
                   />
                 </MDBCol>
                 <MDBCol size="3">
                   <MDBInput
-                    label="Vencimento"
+                    label="Venc"
                     id="form5"
                     type="password"
                     size="lg"
@@ -58,7 +58,7 @@ function OrdersPurchage() {
                 <MDBCol size="2">
                   <MDBInput
                     label="CVV"
-                    id="form6"
+                    id="form5"
                     type="password"
                     size="lg"
                     placeholder="CVV"
@@ -88,7 +88,7 @@ function OrdersPurchage() {
                 id="form3"
                 type="text"
                 size="lg"
-                value="Av. Paulista, 31"
+                placeholder="Av. Paulista, 31"
               />
               <MDBRow className="my-4">
                 <MDBCol size="7">
@@ -97,7 +97,7 @@ function OrdersPurchage() {
                     id="form4"
                     type="text"
                     size="lg"
-                    value="Apto 8 / torre 2"
+                    placeholder="Apto 8 / torre 2"
                   />
                 </MDBCol>        
                 <MDBCol size="7">
@@ -106,7 +106,7 @@ function OrdersPurchage() {
                     id="form4"
                     type="text"
                     size="lg"
-                    value="11 92789-3986"
+                    placeholder="11 92789-3986"
                   />
                 </MDBCol>        
               </MDBRow>

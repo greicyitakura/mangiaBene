@@ -1,9 +1,10 @@
-import { useEffect, useMemo, useState } from 'react';
-import { Button, Offcanvas, Stack } from 'react-bootstrap';
-import { Link, useHistory } from 'react-router-dom';
+import { useEffect, useMemo } from 'react';
+import { Offcanvas, Stack } from 'react-bootstrap';
+import { useHistory, Link } from 'react-router-dom';
 import { formatPrice } from 'util/formatters';
 import { CartItem } from './CartItem';
 import { useShoppingCart } from './ShoppingCartContext';
+import ButtonIcon from 'components/ButtonIcon';
 
 export type ShoppingCartProps = {
   isOpen: boolean;
@@ -51,15 +52,9 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
               <b>Total: {formatPrice(totalAmount)}</b>
             </h2>
           </div>
-
-          <Link to={'/orders'}>
-            <Button
-              className="me-auto fw-bold fs-5"
-              onClick={() => history.push('/orders')}
-            >
-              Finalizar pedido
-            </Button>
-          </Link>
+          <Link to="/orders" >
+        <ButtonIcon text="Finalizar pedido" />
+        </Link>
         </Stack>
       </Offcanvas.Body>
     </Offcanvas>
