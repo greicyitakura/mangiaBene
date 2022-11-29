@@ -1,10 +1,10 @@
 import { useEffect, useMemo } from 'react';
 import { Offcanvas, Stack } from 'react-bootstrap';
-import { useHistory, Link } from 'react-router-dom';
 import { formatPrice } from 'util/formatters';
 import { CartItem } from './CartItem';
 import { useShoppingCart } from './ShoppingCartContext';
 import ButtonIcon from 'components/ButtonIcon';
+import { Link, useHistory } from 'react-router-dom';
 
 export type ShoppingCartProps = {
   isOpen: boolean;
@@ -17,6 +17,8 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
     useShoppingCart();
 
   const calculateTotalAmount = (): number => {
+    if (cartItems.length === 0) return 0
+    
     const selectedItems = cartItems.map(
       (item) => cartProducts[item.id]?.price * item.quantity
     );

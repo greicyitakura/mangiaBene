@@ -1,5 +1,7 @@
 # Mangia Bene
 
+http://34.204.2.138/
+
 ## Sobre o projeto
 Mangia Bene é uma aplicação full stack web construída para a conclusão da matéria Projeto Integrador Transdisciplinar em Engenharia de Software II.
 A aplicação consiste em um sistema de restaurante delivery, onde o cliente efetua o pedido online.
@@ -39,11 +41,10 @@ A atividade a ser realizada consiste em:
 ## Front end
 - HTML / CSS / JS / TypeScript
 - ReactJS
-- React Native
 
 ## Implantação em produção
-- Back end: Heroku
-- Front end web: Netlify
+- Back end: EC2
+- Front end web: EC2
 - Banco de dados: Postgresql / H2
 
 # Como executar o projeto
