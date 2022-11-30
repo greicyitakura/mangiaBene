@@ -75,6 +75,14 @@ yarn install
 # executar o projeto
 yarn start
 ```
+# Para Logar como Gerente:
+email: maria@gmail.com
+senha: 123456
+
+# Para Logar como Garçom:
+email: alex@gmail.com
+senha: 123456
+
 # Autor
 Greicy Itakura
 https://www.linkedin.com/in/greicy-itakura
