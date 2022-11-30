@@ -5,7 +5,7 @@ http://34.204.2.138/
 ## Sobre o projeto
 Mangia Bene é uma aplicação full stack web construída para a conclusão da matéria Projeto Integrador Transdisciplinar em Engenharia de Software II.
 A aplicação consiste em um sistema de restaurante delivery, onde o cliente efetua o pedido online.
-E o administrador do sistema (gerente e garçon) pode adicionar novos produtos no site do restaurante.
+E o administrador do sistema (gerente e garçom) pode adicionar novos produtos no site do restaurante.
 
 A atividade a ser realizada consiste em:
 - Modelagem de dados: iniciando a construção dos artefatos de estruturais e comportamentais da Unified Modeling Language (UML)
