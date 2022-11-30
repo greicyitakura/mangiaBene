@@ -29,8 +29,13 @@ A atividade a ser realizada consiste em:
 ![Camadas](https://github.com/greicyitakura/mangiaBene/blob/main/pitII/imagens/diagrama.png) 
 
 ## Layout mobile
+
+![Camadas](https://github.com/greicyitakura/mangiaBene/blob/main/mobile.png)
+
 ## Layout web
-## Modelo conceitual
+
+![Camadas](https://github.com/greicyitakura/mangiaBene/blob/main/layout1.png)
+![Camadas](https://github.com/greicyitakura/mangiaBene/blob/main/layout2.png)
 
 # Tecnologias utilizadas
 
